@@ -21,4 +21,10 @@ public interface SeoulMapper {
 	public SeoulVO seoulAttractionDetailData(int contentid);
 	
 	public void seoulHitIncrement(int contentid);
+	
+	public List<SeoulVO> seoulFindData(Map map);
+	
+	public int seoulFindTotalPage(String address);
+	
+	public List<SeoulVO> seoulTop5Data();
 }

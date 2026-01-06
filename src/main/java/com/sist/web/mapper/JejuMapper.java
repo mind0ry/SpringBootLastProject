@@ -18,4 +18,8 @@ public List<JejuVO> jejuListData(Map map);
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM jejutravel "
 			+ "WHERE contenttype=#{contenttype}")
 	public int jejuTotalPage(int contenttype);
+	
+	public List<JejuVO> jejuFindData(Map map);
+	public int jejuFindTotalPage(Map map);
+	public List<JejuVO> jejuTop4Data();
 }
