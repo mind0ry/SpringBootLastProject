@@ -59,6 +59,6 @@ public class MainController {
 		model.addAttribute("bList", bList);
 		
 		model.addAttribute("main_jsp", "../main/home.jsp");
-		return "/main/main";
+		return "main/main";
 	}
 }
