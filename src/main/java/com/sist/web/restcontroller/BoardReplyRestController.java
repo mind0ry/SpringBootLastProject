@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -80,4 +81,19 @@ public class BoardReplyRestController {
     	}
     	return new ResponseEntity<>(map,HttpStatus.OK);
     }
+    
+    @PutMapping("/reply/update_vue/")
+    public ResponseEntity<Map> reply_update_vue(@RequestBody BoardReplyVO vo) {
+    	Map map=new HashMap();
+    	try
+    	{
+    		bService.boardReplyUpdate(vo);
+    		map=commonsData(vo.getBno());
+    	}catch(Exception ex)
+    	{
+    		return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+    	}
+    	return new ResponseEntity<>(map,HttpStatus.OK);
+    }
+    
 }

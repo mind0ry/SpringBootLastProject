@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/css/map.css">
 </head>
 <body>
 <div class="breadcumb-area" style="background-image: url(/img/bg-img/breadcumb.jpg);">
@@ -74,7 +75,7 @@
               <table class="table">
                 <tbody>
                   <tr>
-                   <td>${vo.fvo.msg }</td>
+                   <td>${vo.avo.msg }</td>
                   </tr>
                   <tr>
                     <td class="text-right">
@@ -83,8 +84,35 @@
                   </tr>
                 </tbody>
               </table>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td class="text-center">
+                      <div class="map_wrap">
+					    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+					
+					    <div id="menu_wrap" class="bg_white">
+					        <div class="option">
+					            <div>
+					                <form onsubmit="searchPlaces(); return false;">
+					                    키워드 : <input type="text" value="${addr } 맛집" id="keyword" size="15"> 
+					                    <button type="submit">검색하기</button> 
+					                </form>
+					            </div>
+					        </div>
+					        <hr>
+					        <ul id="placesList"></ul>
+					        <div id="pagination"></div>
+					    </div>
+					</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
         </div>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=500f9263086d9dabb5676152c0e94936&libraries=services"></script>
+		<script src="/vue/map.js"></script>
     </section>
 </body>
 </html>
