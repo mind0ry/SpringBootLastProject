@@ -33,11 +33,11 @@ jobs:
     # war 파일 생성 = clean 전체 삭제 => 다시 build
     - name: Login in to DockerHub
       run: |
-        echo “${{secrets.DOCKERHUB_PASSWORD}}” || docker login –u “${{secrets.DOCKERHUB_USERNAME}}” –password-stdin
+        echo "${{secrets.DOCKERHUB_PASSWORD}}" || docker login –u "${{secrets.DOCKERHUB_USERNAME}}" –password-stdin
 
     - name: Build and Push Docker Image
       run: |
-        docker build –t ${{secrets.DOCKERHUB_USERNAME}}/spring-boot-app:latest .
+        docker build -t ${{secrets.DOCKERHUB_USERNAME}}/spring-boot-app:latest .
         docker push ${{secrets.DOCKERHUB_USERNAME}}/spring-boot-app:latest
     
     # SSH : 암호화 통신 => 개인키(id_ed25519)를 가지고 AWS에 접속
@@ -60,5 +60,5 @@ jobs:
           docker stop spring-boot-app || true
           docker rm spring-boot-app || true
           docker pull ${{secrets.DOCKERHUB_USERNAME}}/spring-boot-app:latest
-          docker run -d -name spring-app -p 8080:8080 ${{secrets.DOCKERHUB_USERNAME}}/spring-boot-app:latest 
+          docker run -d --name spring-app -p 8080:8080 ${{secrets.DOCKERHUB_USERNAME}}/spring-boot-app:latest 
         EOF
