@@ -37,7 +37,7 @@
                         <img src="/img/jeju.webp" style="widht: 330px;height: 238px;">
                         <div class="catagory-title">
                             <a href="#">
-                                <h5>제주 여행 코스</h5>
+                                <h5>제주 여행 코스 cicd</h5>
                             </a>
                         </div>
                     </div>
