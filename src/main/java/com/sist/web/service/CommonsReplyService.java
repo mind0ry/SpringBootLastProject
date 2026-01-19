@@ -29,4 +29,6 @@ public interface CommonsReplyService {
 	public int commonsReplyTotalPage(int cno);
 	public void commonsReplyInsert(CommonsReplyVO vo);
 	public void commonsDelete(int no);
+	public void commonsMsgUpdate(CommonsReplyVO vo);
+	public void commonsReplyReplyInsert(CommonsReplyVO vo);
 }

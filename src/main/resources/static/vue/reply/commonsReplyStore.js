@@ -12,8 +12,12 @@ const useCommonsRepleStore=defineStore('commons_reply',{
 		cno:0,
 		sessionId:'',
 		msg:'',
-		count:0
-		//update관련 
+		count:0,
+		msg:'',
+		upReplyNo:null,
+		updateMsg:{},
+		reReplyNo:null,
+		replyMsg:{}
 	}),
 	getters:{
 		//  페이지 출력 
@@ -51,8 +55,8 @@ const useCommonsRepleStore=defineStore('commons_reply',{
 					cno:cno
 				}		
 			})
-			this.setPageData(res.data)
 			console.log(res.data)
+			this.setPageData(res.data)
 		},
 		async commonsInsert(msgRef){
 			if(this.msg==='')
@@ -65,20 +69,56 @@ const useCommonsRepleStore=defineStore('commons_reply',{
 				msg:this.msg
 			})
 			this.setPageData(res.data)
+			this.msg=''
 		},
 		// 삭제 
-		async commonsDelete(no) {
-			const res=await api.delete('/commons/delete_vue/', {
-				params: {
-					no:no,
-					cno:this.cno,
-					page:this.curpage
-				}
+		async commonsDelete(no){
+			const res=await api.delete('/commons/delete_vue/',{
+			  params:{
+				no:no,
+				cno:this.cno,
+				page:this.curpage
+			  }
+				
 			})
 			this.setPageData(res.data)
-		}
+		},
 		// update 
+		toggleUpdate(no,msg){
+			this.upReplyNo=this.upReplyNo===no?null:no
+			this.updateMsg[no]=msg
+			this.reReplyNo=null
+		},
+		// RestFul => select(get),delete(delete)
+		// update(put) , insert(post)
+		async replyUpdate(no){
+			  const res=await api.put('/commons/update_vue/',{
+				  
+							no:no,
+							cno:this.cno,
+							page:this.curpage,
+							msg:this.updateMsg[no]
+						  
+				})
+				this.setPageData(res.data)
+				this.upReplyNo=null
+		},
 		// reply
+		toggleReply(no,msg){
+			    this.reReplyNo=this.reReplyNo===no?null:no
+				//this.replyMsg[no]=msg
+				this.upReplyNo=null
+		},
+		async replyReply(no){
+			const res=await api.post('/commons/reply_reply_insert_vue/',{
+				no:no,
+			    cno:this.cno,
+				page:this.curpage,
+				msg:this.replyMsg[no]
+			})
+			this.setPageData(res.data)
+			this.reReplyNo=null
+		}
 		
 	}
 })
