@@ -17,7 +17,7 @@
                         <img src="/img/seoul.jpg" style="widht: 330px;height: 238px;">
                         <div class="catagory-title">
                             <a href="#">
-                                <h5>서울 여행 코스</h5>
+                                <h5>서울 여행 코스 cicd</h5>
                             </a>
                         </div>
                     </div>
