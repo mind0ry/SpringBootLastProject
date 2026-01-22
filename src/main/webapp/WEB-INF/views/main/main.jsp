@@ -17,7 +17,7 @@
 
     <!-- Core Stylesheet -->
     <link href="/style.css" rel="stylesheet">
-
+	<link rel="stylesheet" href="/css/toast.css">
     <!-- Responsive CSS -->
     <link href="/css/responsive/responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -51,6 +51,8 @@
    <jsp:include page="${main_jsp}"></jsp:include>
 
     <jsp:include page="footer.jsp"></jsp:include>
+    
+    
 
     <!-- Jquery-2.2.4 js -->
     <script src="/js/jquery/jquery-2.2.4.min.js"></script>

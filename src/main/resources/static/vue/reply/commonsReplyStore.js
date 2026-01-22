@@ -17,7 +17,8 @@ const useCommonsRepleStore=defineStore('commons_reply',{
 		upReplyNo:null,
 		updateMsg:{},
 		reReplyNo:null,
-		replyMsg:{}
+		replyMsg:{},
+		stomp: null
 	}),
 	getters:{
 		//  페이지 출력 
@@ -32,6 +33,42 @@ const useCommonsRepleStore=defineStore('commons_reply',{
 		}
 	},
 	actions:{
+		// 서버 연결
+		connect(id) {
+			const sock=new SockJS('/ws')
+			this.stomp=Stomp.over(sock)
+			
+			// 구독 => 데이터를 받는 경우 => 어디에 출력
+			// 어떤 URL인 경우인지 
+			/*
+			this.stomp.connect({}, ()=>{}, ()=>{})
+			                   --  ------  ------
+							   |      |       | error
+							       connectionCallback
+							headers
+			*/
+			this.stomp.connect({}, () => {
+				this.stomp.subscribe('/sub/notice/'+id, msg=>{
+					this.showToast(msg.body)
+					this.dataRecv()
+				})
+			})
+		},
+		
+		showToast(message){
+			  const toast = document.getElementById("reserveToast")
+			  const toastMsg = document.getElementById("toastMsg")
+
+			  toastMsg.innerText = message;
+			  toast.classList.add("show");
+
+			  // 3초 후 자동 닫힘
+			  
+			  setTimeout(() => {
+			     hideToast()
+			  }, 5000);
+		},
+		
 		// then(responae=>{})
 		setPageData(data){
 			this.list=data.list
@@ -122,3 +159,7 @@ const useCommonsRepleStore=defineStore('commons_reply',{
 		
 	}
 })
+function hideToast() {
+	const toast = document.getElementById("reserveToast");
+	toast.classList.remove("show");
+}

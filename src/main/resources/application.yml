@@ -30,6 +30,7 @@ spring:
 mybatis:
   type-aliases-package: com.sist.web.vo
   mapper-locations: mybatis/mapper/*.xml
+
 # MyBatis : 복잡한 SQL => Annotation / XML(JOIN, 동적쿼리)
 # 프로시저 / 트리거 / 함수
 # JPA => JOIN => CRUD

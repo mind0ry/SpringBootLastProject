@@ -272,6 +272,7 @@ const CNO='${param.contentid}'
                   </div>
                 </div>
                 </div>
+                <jsp:include page="../commons/toast.jsp"></jsp:include>
                 
                        <script>
                         const {onMounted,ref,createApp} = Vue
@@ -284,6 +285,7 @@ const CNO='${param.contentid}'
                         		onMounted(()=>{
                         			store.sessionId=SESSION_ID
                         			store.commonsListData(CNO)
+                        			store.connect(SESSION_ID)
                         		})
                         		
                         		return {
@@ -297,7 +299,6 @@ const CNO='${param.contentid}'
                        </script>   
             </div>
             
-        </div>
         
     </section>
 </body>
